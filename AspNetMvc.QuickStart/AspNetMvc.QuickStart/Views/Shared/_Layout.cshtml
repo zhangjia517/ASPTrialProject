@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar fixed-top" @*style="background: url('/Image/1.jpg'); height:100px*@ ">
         <div class="container">
             <a class="navbar-brand">
-                @Html.ActionLink("叵徕忑缶亩", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fostudio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,8 @@
                         @Html.ActionLink("关于", "About", "Home", null, new { @class = "nav-link" })
                     </li>*@
                     <li class="nav-item active">
-                        @Html.ActionLink("软件", "Index", "Software", null, new { @class = "nav-link" })
+                        @*@Html.ActionLink("软件", "Index", "Software", null, new { @class = "nav-link" })*@
+                        <a class="nav-link" href="http://software.gameplatform.cn" target="_blank">软件</a>
                     </li>
                     @*<li class="nav-item active">
                             @Html.ActionLink("联系方式", "Contact", "Home", null, new { @class = "nav-link" })

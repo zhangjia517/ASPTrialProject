@@ -1,0 +1,92 @@
+﻿@model IEnumerable<AspNetMvc.QuickStart.Models.Software>
+
+@{
+    ViewBag.Title = "Software";
+}
+
+<br />
+<h2>软件666</h2>
+<br />
+
+@*<table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URL)
+            </th>
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+            </tr>
+        }
+    </table>*@
+
+<p>
+    <button type="button" onclick="UserLogin();" class="btn btn-primary">AJAX</button>
+</p>
+
+<div class="row ">
+    @{
+        //Random r = new Random();
+        foreach (var item in Model)
+        {
+            //string[] parm = new string[] { "btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger" };
+            //string temp = parm[r.Next(0, parm.Length)];
+
+            <div class="col-md-4" style="margin: 10px 0">
+                <div class="card text-center">
+                    <div class="card-header">
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </div>
+                    <div class="card-block" style="margin: 10px 0;">
+                        <h4 class="card-title" style="margin: 10px 0"> @Html.DisplayFor(modelItem => item.Name)</h4>
+                        <p class="card-text" style="height: 40px;"> @Html.DisplayFor(modelItem => item.Description)</p>
+                        <a href="@Html.DisplayFor(modelItem => item.URL)" class="btn btn-primary btn-sm" style="width: 150px; margin: 10px 0;">Get it</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="~/Scripts/Software/SoftwareJavaScript.js"></script>
+<script>
+    function UserLogin() {
+        var results = { software: [{ "ID": "1", "Name": "Hyper-V" }, { "ID": "2", "Name": "vSphere" }, { "ID": "2", "Name": "XenServer" }] };
+
+        $.post('@Url.Action("ToTest", "Software")', results)
+            .done(function (data) {
+                alert(data.ok + " " + data.msg);
+            })
+            .fail(function (data) {
+                alert(data.ok + " " + data.msg);
+            })
+            .always(function (data) {
+
+            });
+
+        //$.post("/Software/ToTest", results,
+        //    function (data) {
+        //        if (data.ok) {
+        //            alert(data.msg);
+        //        } else {
+        //            top.location = "/Students/Index";
+        //        }
+        //    }, "json"
+        //);
+    }
+</script>

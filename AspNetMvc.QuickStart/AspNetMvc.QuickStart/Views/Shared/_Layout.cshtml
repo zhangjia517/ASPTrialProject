@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GamePlatform</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar fixed-top" @*style="background: url('/Image/1.jpg'); height:100px*@ ">
+        <div class="container">
+            <a class="navbar-brand">
+                @Html.ActionLink("叵徕忑缶亩", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @Html.ActionLink("表单", "Index", "Students", null, new { @class = "nav-link" })
+                    </li>
+                    @*<li class="nav-item active">
+                        @Html.ActionLink("关于", "About", "Home", null, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item active">
+                        @Html.ActionLink("软件", "Index", "Software", null, new { @class = "nav-link" })
+                    </li>
+                    @*<li class="nav-item active">
+                            @Html.ActionLink("联系方式", "Contact", "Home", null, new { @class = "nav-link" })
+                        </li>*@
+                    @*<li class="nav-item active">
+                        <a class="nav-link" href="/Home/Index/#NET11">跳转</a>
+                    </li>
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            下拉菜单
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" onclick="javascript: alert('测试666')">测试弹窗</a>
+                            <a class="dropdown-item" href="#">暂无666</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">暂无</a>
+                        </div>
+                    </li>*@
+                    @*<li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>*@
+                </ul>
+                @*<form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "Home", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item active"><a href="javascript:;" class="nav-link">Hello, @User.Identity.Name</a></li>
+                            <li class="nav-item active"><a href="javascript:;" class="nav-link" id="logout">退出系统</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item active">@Html.ActionLink("登录", "Login", "Home", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Copyright &copy; 2018-2028 Fostudio. All rights reserved.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script>
+    $(function () {
+        $('#logout').click(function () {
+            $('#logoutForm').submit();
+        });
+    });
+</script>
